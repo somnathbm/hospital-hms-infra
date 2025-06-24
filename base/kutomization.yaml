@@ -1,0 +1,21 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+helmCharts:
+  - name: opd-service
+    path: opd-service
+    version: 0.1.0
+    releaseName: opd-service
+    valuesFile: values.yaml
+
+  - name: appointment-service
+    path: appointment-service
+    version: 0.1.0
+    releaseName: appointment-service
+    valuesFile: values.yaml
+
+  - name: billing-service
+    path: billing-service
+    version: 0.1.0
+    releaseName: billing-service
+    valuesFile: values.yaml

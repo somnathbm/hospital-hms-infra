@@ -1,0 +1,9 @@
+replicaCount: 1
+
+image:
+  repository: somnathbm/hospital-hms-billing-service
+  tag: latest
+
+service:
+  grpcPort: 50052
+  httpPort: 8080

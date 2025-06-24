@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "opd-service.fullname" . }}
+  labels:
+    {{- include "opd-service.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "opd-service.selectorLabels" . | nindent 4 }}
+  
+  type: {{ .Values.service.type }}
+  ports:
+    - name: grpc
+      port: 50051
+      targetPort: grpcPort
+    - name: http
+      port: 8080
+      targetPort: httpPort
