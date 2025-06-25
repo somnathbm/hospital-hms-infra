@@ -1,0 +1,9 @@
+replicaCount: 1
+
+image:
+  repository: somnathbm/hospital-hms-opd-service
+  tag: dev-
+
+service:
+  grpcPort: 50051
+  httpPort: 8080
