@@ -1,4 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: appointment-service
+  name: {{ include "appointment-service.name" . }}
+  labels:
+    {{- include "appointment-service.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  
+  selector:
+    matchLabels:
+      {{-include "appointment-service.selectorLabels" . | nindent 4 }}
+
+  template:
+    metadata:
+      labels:
+        {{- include "appointment-service.labels" . | nindent 4 }}
+
+    spec:
+      containers:
+      - name: {{ include "appointment-service.name" . }}
+        image: "{{ .Values.image.repository }}:${{ .Values.image.tag }}"
+        ports:
+        - name: httpPort
+          containerPort: {{ .Values.service.httpPort }}
+        - name: grpcPort
+          containerPort: {{ .Values.service.grpcPort }}

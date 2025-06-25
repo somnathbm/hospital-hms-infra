@@ -1,4 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: billing-service
+  name: {{ include "billing-service.name" . }}
+  labels:
+    {{- include "billing-service.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+
+  selector:
+    matchLabels:
+      {{- include "billing-service.selectorLabels" . | nindent 4 }}
+
+  template:
+    metadata:
+      labels:
+        {{- include "billing-service.labels" . | nindent 4 }}
+
+    spec:
+      containers:
+      - name: {{ include "billing-service.name" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        ports:
+        - name: httpPort
+          containerPort: {{ .Values.service.httpPort }}
+        - name: grpcPort
+          containerPort: {{ .Values.service.grpcPort }}

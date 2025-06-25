@@ -8,11 +8,10 @@ spec:
   selector:
     {{- include "opd-service.selectorLabels" . | nindent 4 }}
   
-  type: {{ .Values.service.type }}
   ports:
-    - name: grpc
-      port: 50051
-      targetPort: grpcPort
-    - name: http
-      port: 8080
-      targetPort: httpPort
+  - name: grpc
+    port: {{ .Values.service.grpcPort }}
+    targetPort: {{ .Values.service.grpcPort }}
+  - name: http
+    port: {{ .Values.service.httpPort }}
+    targetPort: {{ .Values.service.httpPort }}
