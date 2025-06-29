@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: somnathbm/hospital-hms-opd-service
-  tag: dev-
+  tag: dev-sha-78cbeb6c15cc370f257b060ded8447eeb187d708
 
 service:
   grpcPort: 50051
