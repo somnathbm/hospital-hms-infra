@@ -8,7 +8,7 @@ resources:
 helmCharts:
   - name: opd-service
     valuesFile: opd-values.yaml
-  - name: billing-service
-    valuesFile: billing-values.yaml
-  - name: appointment-service
-    valuesFile: appointment-values.yaml
+  # - name: billing-service
+  #   valuesFile: billing-values.yaml
+  # - name: appointment-service
+  #   valuesFile: appointment-values.yaml
