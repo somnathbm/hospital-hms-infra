@@ -8,6 +8,10 @@ Infra repo for the [hospital-hms repo](https://github.com/somnathbm/hospital-hms
   - Helm charts for each service
   - Kustomize for multi-stage config generation
   - ArgoCD app-of-apps style for GitOps deployment
+  - Terraform / Cloudformation / CDK for IaC
+  - LGTM (Loki-Grafana-Tempo-Mimir) stack for Observability
+  - LitmusChaos for Chaos experiments
+  - Cluster is hosted on EKS
 
 ---
 
@@ -30,7 +34,7 @@ hospital-hms-infra/
 │       ├── appointment-app.yaml
 │       ├── billing-app.yaml
 │       └── opd-app.yaml
-├── base
+├── charts
 │   ├── appointment-service
 │   │   ├── Chart.yaml
 │   │   ├── templates
@@ -45,7 +49,6 @@ hospital-hms-infra/
 │   │   │   ├── deployment.yaml
 │   │   │   └── service.yaml
 │   │   └── values.yaml
-│   ├── kutomization.yaml
 │   └── opd-service
 │       ├── Chart.yaml
 │       ├── templates
