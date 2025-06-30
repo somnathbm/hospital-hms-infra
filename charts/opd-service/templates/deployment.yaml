@@ -14,12 +14,12 @@ spec:
   template:
     metadata:
       labels:
-        {{- include "opd-service.labels" . | nindent 6 }}
+        {{- include "opd-service.labels" . | nindent 8 }}
 
     spec:
       containers:
       - name: {{ include "opd-service.name" . }}
-        image: "{{ .Values.image.repository }}:${{ .Values.image.tag }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - name: httpPort
           containerPort: {{ .Values.service.httpPort }}
