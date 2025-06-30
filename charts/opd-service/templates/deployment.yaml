@@ -9,7 +9,7 @@ spec:
   
   selector:
     matchLabels:
-      {{- include "opd-service.selectorLabels" . | nindent 4 }}
+      {{- include "opd-service.selectorLabels" . | nindent 6 }}
 
   template:
     metadata:
@@ -21,7 +21,7 @@ spec:
       - name: {{ include "opd-service.name" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
-        - name: httpPort
-          containerPort: {{ .Values.service.httpPort }}
-        - name: grpcPort
-          containerPort: {{ .Values.service.grpcPort }}
+        - name: {{ .Values.service.ports.http.name }}
+          containerPort: {{ .Values.service.ports.http.num }}
+        - name: {{ .Values.service.ports.grpc.name }}
+          containerPort: {{ .Values.service.ports.grpc.num }}

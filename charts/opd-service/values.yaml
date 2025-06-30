@@ -5,5 +5,10 @@ image:
   tag: dev-sha-78cbeb6c15cc370f257b060ded8447eeb187d708
 
 service:
-  grpcPort: 50051
-  httpPort: 8080
+  ports:
+    grpc:
+      name: grpc
+      num: 50051 
+    http:
+      name: http
+      num: 8080
