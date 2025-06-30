@@ -3,13 +3,13 @@ kind: Deployment
 metadata:
   name: {{ include "opd-service.name" . }}
   labels:
-    {{ - include "opd-service.labels" . | nindent 4 }}
+    {{- include "opd-service.labels" . | nindent 4 }}
 spec:
   replicas: {{ .Values.replicaCount }}
   
   selector:
     matchLabels:
-      {{ - include "opd-service.selectorLabels" . | nindent 4 }}
+      {{- include "opd-service.selectorLabels" . | nindent 4 }}
 
   template:
     metadata:

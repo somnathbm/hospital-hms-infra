@@ -3,10 +3,10 @@ kind: Service
 metadata:
   name: {{ include "opd-service.fullname" . }}
   labels:
-    {{ - include "opd-service.labels" . | nindent 4 }}
+    {{- include "opd-service.labels" . | nindent 4 }}
 spec:
   selector:
-    {{ - include "opd-service.selectorLabels" . | nindent 4 }}
+    {{- include "opd-service.selectorLabels" . | nindent 4 }}
   
   ports:
   - name: grpc
