@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "opd-service.name" . }}
+  name: {{ include "opd-service.appname" . }}
   labels:
     {{- include "opd-service.labels" . | nindent 4 }}
 spec:
@@ -18,7 +18,7 @@ spec:
 
     spec:
       containers:
-      - name: {{ include "opd-service.name" . }}
+      - name: {{ include "opd-service.appname" . }}
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
         - name: {{ .Values.service.ports.http.name }}

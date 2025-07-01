@@ -1,8 +1,15 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "billing-service.name" -}}
-{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
+{{- define "billing-service.appname" -}}
+{{- default .Chart.Name .Values.nameOverride.app | trunc 63 | trimSuffix "-" }}
+{{- end }}
+
+{{/*
+Service name
+*/}}
+{{- define "billing-service.svcname" -}}
+{{- default .Chart.Name .Values.nameOverride.svc | trunc 63 | trimSuffix "-" -}}
 {{- end }}
 
 {{/*
@@ -46,7 +53,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "billing-service.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "billing-service.name" . }}
+app.kubernetes.io/name: {{ include "billing-service.appname" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 

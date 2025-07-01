@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "opd-service.fullname" . }}
+  name: {{ include "opd-service.svcname" . }}
   labels:
     {{- include "opd-service.labels" . | nindent 4 }}
 spec:

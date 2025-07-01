@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "appointment-service.name" . }}
+  name: {{ include "appointment-service.appname" . }}
   labels:
     {{- include "appointment-service.labels" . | nindent 4 }}
 spec:
@@ -9,19 +9,19 @@ spec:
   
   selector:
     matchLabels:
-      {{-include "appointment-service.selectorLabels" . | nindent 4 }}
+      {{- include "appointment-service.selectorLabels" . | nindent 6 }}
 
   template:
     metadata:
       labels:
-        {{- include "appointment-service.labels" . | nindent 4 }}
+        {{- include "appointment-service.labels" . | nindent 8 }}
 
     spec:
       containers:
-      - name: {{ include "appointment-service.name" . }}
-        image: "{{ .Values.image.repository }}:${{ .Values.image.tag }}"
+      - name: {{ include "appointment-service.appname" . }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         ports:
-        - name: httpPort
-          containerPort: {{ .Values.service.httpPort }}
-        - name: grpcPort
-          containerPort: {{ .Values.service.grpcPort }}
+        - name: {{ .Values.service.ports.http.name }}
+          containerPort: {{ .Values.service.ports.http.num }}
+        - name: {{ .Values.service.ports.grpc.name }}
+          containerPort: {{ .Values.service.ports.grpc.num }}

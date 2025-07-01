@@ -4,6 +4,15 @@ image:
   repository: somnathbm/hospital-hms-appointment-service
   tag: latest
 
+nameOverride:
+  app: appointment-app
+  svc: appointment-svc
+
 service:
-  grpcPort: 50052
-  httpPort: 8080
+  ports:
+    grpc:
+      name: grpc
+      num: 50052
+    http:
+      name: http
+      num: 8000
