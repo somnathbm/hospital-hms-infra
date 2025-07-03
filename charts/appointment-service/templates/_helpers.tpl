@@ -1,15 +1,8 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "appointment-service.appname" -}}
-{{- default .Chart.Name .Values.nameOverride.app | trunc 63 | trimSuffix "-" }}
-{{- end }}
-
-{{/*
-Service name
-*/}}
-{{- define "appointment-service.svcname" -}}
-{{- default .Chart.Name .Values.nameOverride.svc | trunc 63 | trimSuffix "-" -}}
+{{- define "appointment-service.name" -}}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -53,7 +46,7 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 Selector labels
 */}}
 {{- define "appointment-service.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "appointment-service.appname" . }}
+app.kubernetes.io/name: {{ include "appointment-service.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 

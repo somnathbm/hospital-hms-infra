@@ -4,10 +4,6 @@ image:
   repository: somnathbm/hospital-hms-billing-service
   tag: latest
 
-nameOverride:
-  app: billing-app
-  svc: billing-svc
-
 service:
   ports:
     grpc:

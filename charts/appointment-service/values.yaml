@@ -4,10 +4,6 @@ image:
   repository: somnathbm/hospital-hms-appointment-service
   tag: latest
 
-nameOverride:
-  app: appointment-app
-  svc: appointment-svc
-
 service:
   ports:
     grpc:

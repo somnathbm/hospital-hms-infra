@@ -1,9 +1,5 @@
 replicaCount: 1
 
-nameOverride:
-  app: opd-app
-  svc: opd-svc
-
 image:
   repository: somnathbm/hospital-hms-opd-service
   tag: dev-sha-78cbeb6c15cc370f257b060ded8447eeb187d708
