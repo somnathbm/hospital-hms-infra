@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: hospital-dev
 
 resources:
-  - ../../../base
+  - ../../../base/opd
 
 patches:
   - path: opd-patch.yaml

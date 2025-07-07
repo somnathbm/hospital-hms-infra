@@ -4,8 +4,6 @@ kind: Kustomization
 resources:
   # - hospital-hms-namespace.yaml
   - opd-service.yaml
-  - billing-service.yaml
-  - appointment-service.yaml
 
 # helmCharts:
 #   - name: appointment-service

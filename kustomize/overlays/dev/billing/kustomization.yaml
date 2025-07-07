@@ -3,7 +3,7 @@ kind: Kustomization
 namespace: hospital-dev
 
 resources:
-  - ../../../base
+  - ../../../base/billing
 
 patches:
   - path: billing-patch.yaml

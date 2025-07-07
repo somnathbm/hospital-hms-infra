@@ -3,9 +3,9 @@
 set -e
 
 # Export the raw templates
-helm template my-opd-svc ./charts/opd-service -f ./kustomize/overlays/dev/opd-values.yaml > ./kustomize/base/opd-service.yaml
-helm template my-billing-svc ./charts/billing-service -f ./kustomize/overlays/dev/billing-values.yaml > ./kustomize/base/billing-service.yaml
-helm template my-appointment-svc ./charts/appointment-service -f ./kustomize/overlays/dev/appointment-values.yaml > ./kustomize/base/appointment-service.yaml
+helm template my-opd-svc ./charts/opd-service -f ./kustomize/overlays/dev/opd/opd-values.yaml > ./kustomize/base/opd/opd-service.yaml
+helm template my-billing-svc ./charts/billing-service -f ./kustomize/overlays/dev/billing/billing-values.yaml > ./kustomize/base/billing/billing-service.yaml
+helm template my-appointment-svc ./charts/appointment-service -f ./kustomize/overlays/dev/appointment/appointment-values.yaml > ./kustomize/base/appointment/appointment-service.yaml
 
 # generate the Kustomization.yaml file
 cat >./kustomization.yaml << EOF
