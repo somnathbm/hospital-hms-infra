@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opd-service-deploy
+spec:
+  template:
+    spec:
+      containers:
+        - name: opd-service-app
+          image: dev-sha-23cdb2e0bd23aa3771549352074faf17f4b3217c

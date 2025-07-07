@@ -5,10 +5,15 @@ namespace: hospital-dev
 resources:
   - ../../base
 
-helmCharts:
-  - name: billing-service
-    valuesFile: billing-values.yaml
-  - name: appointment-service
-    valuesFile: appointment-values.yaml
-  - name: opd-service
-    valuesFile: opd-values.yaml
+patches:
+  - path: opd-patch.yaml
+  - path: billing-patch.yaml
+  - path: appointment-patch.yaml
+
+# helmCharts:
+#   - name: billing-service
+#     valuesFile: billing-values.yaml
+#   - name: appointment-service
+#     valuesFile: appointment-values.yaml
+#   - name: opd-service
+#     valuesFile: opd-values.yaml

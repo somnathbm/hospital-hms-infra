@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/somnathbm/hospital-hms-infra.git
     targetRevision: main
-    path: argo-apps
+    path: argo-apps/dev
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

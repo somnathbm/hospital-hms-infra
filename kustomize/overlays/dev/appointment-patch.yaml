@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-service-deploy
+spec:
+  template:
+    spec:
+      containers:
+        - name: appointment-service-app
+          image: dev-sha-8aae32bf3c75ead00c9ad63d51035226faf7c5d0
