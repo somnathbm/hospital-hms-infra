@@ -5,7 +5,7 @@ metadata:
   namespace: hospital-dev
 
 spec:
-  ingressClassName: aws-alb
+  ingressClassName: alb
   rules:
   - host: hospital-hms-poc.app.io
     http:
