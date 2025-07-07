@@ -1,8 +1,9 @@
 # cluster
 
 The `/cluster` contains all the cluster wise configuration required, such as:
-  - Ingress
-  - Gateway (North-South)
+  - Ingress (North-South)
+  - Gateway with traffic splitting and monitoring (North-South)
   - Service Mesh (East-West)
   - RBAC
-  - Traffic splitting and monitoring
+  - Network policies (simple, OPA Gatekeeper or Kyverno)
+  - CLuster bootstrap config (kind or EKS)
