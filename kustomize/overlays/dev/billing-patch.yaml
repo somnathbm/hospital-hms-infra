@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: billing-service-app
-          image: somnathbm/hospital-hms-opd-service:dev-sha-f461bad5bf5b9aa44b86bd1dce33b90811599aa1
+          image: somnathbm/hospital-hms-billing-service:dev-sha-f461bad5bf5b9aa44b86bd1dce33b90811599aa1
