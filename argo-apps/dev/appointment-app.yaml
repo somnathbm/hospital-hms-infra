@@ -10,10 +10,10 @@ spec:
   source:
     repoURL: https://github.com/somnathbm/hospital-hms-infra.git
     targetRevision: main
-    path: kustomize/overlays/dev
-    helm:
-      valueFiles:
-        - appointment-values.yaml
+    path: kustomize/overlays/dev/appointment
+    # helm:
+    #   valueFiles:
+    #     - appointment-values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: hospital-dev

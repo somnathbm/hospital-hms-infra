@@ -3,11 +3,9 @@ kind: Kustomization
 namespace: hospital-dev
 
 resources:
-  - ../../base
+  - ../../../../base
 
 patches:
-  - path: opd-patch.yaml
-  - path: billing-patch.yaml
   - path: appointment-patch.yaml
 
 # helmCharts:
