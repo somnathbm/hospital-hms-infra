@@ -12,3 +12,9 @@ nodeGroups:
   - name: ng-2
     instanceType: t2a.medium
     desiredCapacity: 1
+
+cloudWatch:
+  clusterLogging:
+    enableTypes:
+      - "audit"
+    logRetentionInDays: 7
