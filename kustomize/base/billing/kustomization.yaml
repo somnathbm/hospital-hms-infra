@@ -1,25 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
-resources:
-  # - hospital-hms-namespace.yaml
-  - billing-service.yaml
+helmGlobals:
+  chartHome: ../../../charts
 
-# helmCharts:
-#   - name: appointment-service
-#     version: 0.1.0
-#     releaseName: appointment-service
-#     repo: file://../../charts/appointment-service
-#     valuesFile: values.yaml
-
-#   - name: billing-service
-#     version: 0.1.0
-#     releaseName: billing-service
-#     repo: file://../../charts/billing-service
-#     valuesFile: values.yaml
-    
-#   - name: opd-service
-#     version: 0.1.0
-#     releaseName: opd-service
-#     repo: file://../../charts/opd-service
-#     valuesFile: values.yaml
+helmCharts:
+  - name: billing-service
+    version: 0.1.0
+    releaseName: billing-release
+    valuesFile: values.yaml

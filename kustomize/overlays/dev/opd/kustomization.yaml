@@ -9,9 +9,5 @@ patches:
   - path: opd-patch.yaml
 
 # helmCharts:
-#   - name: billing-service
-#     valuesFile: billing-values.yaml
-#   - name: appointment-service
-#     valuesFile: appointment-values.yaml
 #   - name: opd-service
 #     valuesFile: opd-values.yaml
