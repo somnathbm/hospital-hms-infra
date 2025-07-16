@@ -2,12 +2,15 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: hospital-dev
 
+# patches:
+#   - path: opd-patch.yaml
+
 resources:
-  - ../../../base/opd
-
-patches:
-  - path: opd-patch.yaml
-
-# helmCharts:
-#   - name: opd-service
-#     valuesFile: opd-values.yaml
+  - namespace.yaml
+  
+helmCharts:
+  - name: opd-service
+    repo: https://somnathbm.github.io/hospital-hms-infra/charts/
+    version: 0.1.0
+    releaseName: opd-release
+    valuesFile: ./opd-values.yaml

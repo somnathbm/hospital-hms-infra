@@ -3,11 +3,14 @@ kind: Kustomization
 namespace: hospital-dev
 
 resources:
-  - ../../../base/billing
+  - namespace.yaml
 
-patches:
-  - path: billing-patch.yaml
+# patches:
+#   - path: billing-patch.yaml
 
-# helmCharts:
-#   - name: billing-service
-#     valuesFile: billing-values.yaml
+helmCharts:
+  - name: billing-service
+    repo: https://somnathbm.github.io/hospital-hms-infra/charts/
+    version: 0.1.0
+    releaseName: billing-release
+    valuesFile: ./billing-values.yaml
