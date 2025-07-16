@@ -1,6 +1,0 @@
-apiVersion: v2
-appVersion: "1.16.0"
-name: billing-service
-description: A Helm chart for Billing service
-type: application
-version: 0.1.0

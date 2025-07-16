@@ -1,9 +1,0 @@
-replicaCount: 1
-
-image:
-  repository: somnathbm/hospital-hms-appointment-service
-  tag: dev-sha-8aae32bf3c75ead00c9ad63d51035226faf7c5d0
-
-service:
-  grpcPort: 50052
-  httpPort: 8080
