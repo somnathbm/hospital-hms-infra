@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: appointment-service-app
-          image: somnathbm/hospital-hms-appointment-service:dev-sha-8aae32bf3c75ead00c9ad63d51035226faf7c5d0
+          image: dev-sha-e52636b6e0a141c299609328f4d7d58546ab45e9
