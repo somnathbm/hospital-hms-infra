@@ -1,0 +1,81 @@
+---
+# Source: appointment-service/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: appointment-service
+  labels:
+    helm.sh/chart: appointment-service-0.1.0
+    app.kubernetes.io/name: appointment-service
+    app.kubernetes.io/instance: my-appointment-svc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    k8s.grafana.com/scrape: "true"
+    k8s.grafana.com/job: hms-server
+    k8s.grafana.com/instance: appointment-service
+spec:
+  selector:
+    app.kubernetes.io/name: appointment-service
+    app.kubernetes.io/instance: my-appointment-svc
+  
+  ports:
+  - name: grpc
+    port: 50052
+    targetPort: grpc
+  - name: http
+    port: 8000
+    targetPort: http
+---
+# Source: appointment-service/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appointment-service-deploy
+  labels:
+    helm.sh/chart: appointment-service-0.1.0
+    app.kubernetes.io/name: appointment-service
+    app.kubernetes.io/instance: my-appointment-svc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: appointment-service
+      app.kubernetes.io/instance: my-appointment-svc
+
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: appointment-service-0.1.0
+        app.kubernetes.io/name: appointment-service
+        app.kubernetes.io/instance: my-appointment-svc
+        app.kubernetes.io/version: "1.16.0"
+        app.kubernetes.io/managed-by: Helm
+      annotations:
+        k8s.grafana.com/scrape: "true"
+        k8s.grafana.com/job: hms-server
+        k8s.grafana.com/instance: appointment-service
+
+    spec:
+      containers:
+      - name: appointment-service-app
+        image: "somnathbm/hospital-hms-appointment-service:dev-sha-8aae32bf3c75ead00c9ad63d51035226faf7c5d0"
+        ports:
+        - name: http
+          containerPort: 8000
+        - name: grpc
+          containerPort: 50052
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: appointment-service
+        - name: OTEL_TRACES_EXPORTER
+          value: "console,otlp"
+        - name: OTEL_METRICS_EXPORTER
+          value: "console,otlp"
+        - name: OTEL_LOGS_EXPORTER
+          value: "console,otlp"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://grafana-k8s-monitoring-alloy-receiver.monitoring.svc.cluster.local:4318

@@ -32,10 +32,11 @@ cat >./templates/kustomization.yaml << EOF
 EOF
 
 # Check existance of `/templates/kustomization.yaml` file
-if [[ ! -f "../templates/kustomization.yaml" ]]; then
+if [[ ! -f "./templates/kustomization.yaml" ]]; then
   echo "kustomization.yaml file does not exist. Cannot continue."
   exit 1
 else
   # apply the kustomization.yaml
-  kubectl apply -k ./templates
+  # kubectl apply -k ./templates
+  echo "OK"
 fi

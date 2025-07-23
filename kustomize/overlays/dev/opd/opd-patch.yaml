@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: opd-service-app
-          image: dev-sha-cafe682eb59388e1cace451c8146360ecf690912
+          image: somnathbm/hospital-hms-opd-service:dev-sha-cafe682eb59388e1cace451c8146360ecf690912

@@ -2,19 +2,52 @@ apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
   name: hospital-hms-routes
+  namespace: hospital-dev
 spec:
   parentRefs:
   - kind: Gateway
-    name: hospital-hms-gateway
-    namespace: hospital-hms
+    name: hms-gateway
+    namespace: istio-ingress
 
   rules:
-  - backendRefs:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /api/v1/opd
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
+    backendRefs:
     - name: opd-service
       port: 8080
 
+  - matches:
+    - path:
+        type: PathPrefix
+        value: "/api/v1/billing"
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
+    backendRefs:
     - name: billing-service
       port: 8000
 
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /api/v1/appointment
+    filters:
+    - type: URLRewrite
+      urlRewrite:
+        path:
+          type: ReplacePrefixMatch
+          replacePrefixMatch: /
+    backendRefs:
     - name: appointment-service
       port: 8000

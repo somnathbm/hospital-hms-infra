@@ -1,14 +1,19 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: hospital-hms-gateway
-  namespace: hospital-hms
+  name: hms-gateway
+  namespace: istio-ingress
+  annotations:
+    # Example for AWS ALB:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "false"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: instance
 spec:
-  gatewayClassName: amazon-vpc-lattice
+  gatewayClassName: istio
   listeners:
-  - name: hospital-hms-listeners
+  - name: default
     port: 80
     protocol: HTTP
     allowedRoutes:
-      kinds:
-      - kind: HTTPRoute
+      namespaces:
+        from: All

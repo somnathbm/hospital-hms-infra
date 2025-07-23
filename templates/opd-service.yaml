@@ -1,0 +1,81 @@
+---
+# Source: opd-service/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: opd-service
+  labels:
+    helm.sh/chart: opd-service-0.1.0
+    app.kubernetes.io/name: opd-service
+    app.kubernetes.io/instance: my-opd-svc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    k8s.grafana.com/scrape: "true"
+    k8s.grafana.com/job: hms-server
+    k8s.grafana.com/instance: opd-service
+spec:
+  selector:
+    app.kubernetes.io/name: opd-service
+    app.kubernetes.io/instance: my-opd-svc
+  
+  ports:
+  - name: grpc
+    port: 50051
+    targetPort: grpc
+  - name: http
+    port: 8080
+    targetPort: http
+---
+# Source: opd-service/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: opd-service-deploy
+  labels:
+    helm.sh/chart: opd-service-0.1.0
+    app.kubernetes.io/name: opd-service
+    app.kubernetes.io/instance: my-opd-svc
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: opd-service
+      app.kubernetes.io/instance: my-opd-svc
+
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: opd-service-0.1.0
+        app.kubernetes.io/name: opd-service
+        app.kubernetes.io/instance: my-opd-svc
+        app.kubernetes.io/version: "1.16.0"
+        app.kubernetes.io/managed-by: Helm
+      annotations:
+        k8s.grafana.com/scrape: "true"
+        k8s.grafana.com/job: hms-server
+        k8s.grafana.com/instance: opd-service
+
+    spec:
+      containers:
+      - name: opd-service-app
+        image: "somnathbm/hospital-hms-opd-service:dev-sha-23cdb2e0bd23aa3771549352074faf17f4b3217c"
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: grpc
+          containerPort: 50051
+        env:
+        - name: OTEL_SERVICE_NAME
+          value: opd-service
+        - name: OTEL_TRACES_EXPORTER
+          value: "console,otlp"
+        - name: OTEL_METRICS_EXPORTER
+          value: "console,otlp"
+        - name: OTEL_LOGS_EXPORTER
+          value: "console,otlp"
+        - name: OTEL_EXPORTER_OTLP_ENDPOINT
+          value: http://grafana-k8s-monitoring-alloy-receiver.monitoring.svc.cluster.local:4318
