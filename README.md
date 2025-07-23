@@ -15,6 +15,18 @@ Infra repo for the [hospital-hms repo](https://github.com/somnathbm/hospital-hms
 
 ---
 
+## 📊 Screenshots of dashboard
+
+![Grafana Metrics](./docs/images/grafana_metrics.png)
+
+![Grafana APM](./docs/images/grafana_apm.png)
+
+![Grafana K6 Load Testing](./docs/images/grafana_k6.png)
+
+![Istio Kiali Monitoring](./docs/images/istio_kiali.png)
+
+---
+
 ## 📁 Infrastructure Monorepo Structure
 
 ```bash
